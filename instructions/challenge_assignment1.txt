@@ -1,8 +1,14 @@
-Install PostgreSQL and set it up
-Download MIMIC-IV dataset
-Start PostgreSQL engine
+-- Install PostgreSQL and set it up
+-- Download MIMIC-IV dataset
+-- Start PostgreSQL engine
 	~$ sudo -u <database> psql
 	>> enter password and hit enter
 
-Create the Database (The container for everything)
+-- Create the Database (The container for everything)
+	=# CREATE DATABASE omop_cdm;
+
+-- Create the Schema for the database
+	=# CREATE SCHEMA omop;
+
+-- 
 
