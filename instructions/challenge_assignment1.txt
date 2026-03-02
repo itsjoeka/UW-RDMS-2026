@@ -6,9 +6,11 @@
 
 -- Create the Database (The container for everything)
 	=# CREATE DATABASE omop_cdm;
+	=# \l : to list the databases 
 
 -- Create the Schema for the database
 	=# CREATE SCHEMA omop;
+	=# \dn to list all schemas available
 
 -- 
 
