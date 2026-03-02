@@ -11,6 +11,15 @@
 -- Create the Schema for the database
 	=# CREATE SCHEMA omop;
 	=# \dn to list all schemas available
+	=# SET search_path TO omop, public;  : this sets schema to the preferred schema
+	=# SELECT current_schema();          : verifies if the preferred schema is selected
+	---OR---
+	=# ALTER DATABASE omop_cdm SET search_path TO omop, public;  : to make it the default schema for the specified database
 
--- 
+-- Run the DDL file to create all the tables
+	=# \i /path/to/omop_ddl_modified.sql    : run this in postgresql promot
+	---OR---
+	```bash
+	psql -U postgres -d omop_cdm -f omop_ddl_modified.sql
+
 
