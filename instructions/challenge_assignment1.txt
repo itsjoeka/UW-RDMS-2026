@@ -72,10 +72,9 @@
 		- error about column missing; specify coloumns and where postgresql should put each column
 
 
-
--- Add constraints
-
--- Add indexes
+-- Order of running scripts ETL
+	Extract, Transform, Load	
+		create the tables, load the data, pmkeys, indexes and constraints
 
 
 
