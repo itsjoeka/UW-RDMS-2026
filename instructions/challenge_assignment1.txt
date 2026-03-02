@@ -1,0 +1,8 @@
+Install PostgreSQL and set it up
+Download MIMIC-IV dataset
+Start PostgreSQL engine
+	~$ sudo -u <database> psql
+	>> enter password and hit enter
+
+Create the Database (The container for everything)
+
