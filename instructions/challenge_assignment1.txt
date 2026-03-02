@@ -33,7 +33,8 @@
 	- verify : SELECT current_schema();
 	- run ddl file : \i /path/to/ddl.sql
 	- run again : \copy schema.table FROM path WITH (FORMAT csv, HEADER csv, DELIMITER ',');
-
+	
+	-- LOADING PERSON DATA
 	- Error encountered while loading person table: ERROR:  invalid input syntax for type integer: "3.58991277491167E+018"
 		=# ALTER TABLE omop.person ALTER COLUMN person_id TYPE BIGINT;  : switches person_id column data type from integer to bigint (can accomodata up to 9 quintillion)
 	- run again: it failed. ERROR:  invalid input syntax for type bigint: "3.58991277491167E+018"
@@ -45,4 +46,55 @@
 		- I have to tell postgresql the exact columns and where they are positioned
 			=# \copy omop.person(person_id, gender_concept_id, year_of_birth, month_of_birth, day_of_birth, birth_datetime, race_concept_id, ethnicity_concept_id, location_id, provider_id, care_site_id, person_source_value, gender_source_concept_id, race_source_value, race_source_concept_id, ethnicity_source_value, ethnicity_source_concept_id) FROM '/home/kalamix/Documents/Mphil/Courses/13_biomedical_database_management/data/1_omop_data_csv/person.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
 
-	- revert from person_id from VARCHAR to BIGINT 
+	- revert from person_id from VARCHAR to BIGINT
+	-- Convert from VARCHAR to BIGINT
+		=# ALTER TABLE omop.person ALTER COLUMN person_id TYPE BIGINT USING person_id::DOUBLE PRECISION::BIGINT; : converts to decimal and then to big integer
+	-- works now!
+	-- small exploratory
+		-- count records
+			=# SELECT COUNT(*) FROM omop.person;
+		-- View some sample data with negative IDs
+			=# SELECT person_id, year_of_birth, gender_concept_id 
+			=# FROM omop.person 
+			=# WHERE person_id < 0 
+			=# LIMIT 5;	
+
+	-- LOADING OBSERVATION_PERIOD
+		- observation_period_id and person_id in this data had same problem as person id column in person.csv loading, so follow the same steps
+	-- LOAD VISIT_OCCURENCE
+	-- LOAD CONDITION_OCCURENCE
+		- error: ERROR:  invalid input syntax for type integer: "E8798  "
+			the value starts with E and ends in a space: needs cleaning.
+			- first convert to varchar(50) and then clean 
+				- left it like that
+	-- LOAD DRUG_EXPOSURE DATA
+	-- LOAD MEASUREMENT
+		- error about column missing; specify coloumns and where postgresql should put each column
+
+
+
+-- Add constraints
+
+-- Add indexes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
