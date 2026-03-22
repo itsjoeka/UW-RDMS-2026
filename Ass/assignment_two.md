@@ -1,5 +1,3 @@
----
-
 ## Flowchart: Research Data Transformation Process
 
 ### Structure for Lucidchart
