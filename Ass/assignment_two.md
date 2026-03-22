@@ -1,5 +1,3 @@
-Perfect! Let me create a detailed flowchart structure for you to build in Lucidchart.
-
 ---
 
 ## Flowchart: Research Data Transformation Process
